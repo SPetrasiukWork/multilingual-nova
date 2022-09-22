@@ -9,6 +9,7 @@ export const global = {
     },
 
     replaceUrlParam(url, paramName, paramValue) {
+      console.log('global')
       const newUrl = new URL(url)
       const hash = newUrl.hash
       newUrl.hash = ''

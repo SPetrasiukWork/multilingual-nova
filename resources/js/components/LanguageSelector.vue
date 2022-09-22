@@ -43,18 +43,15 @@ export default {
         },
 
 
-        replaceUrlParam(url, paramName, paramValue)
-        {
-            if (paramValue == null) {
-                paramValue = '';
-            }
-            var pattern = new RegExp('\\b('+paramName+'=).*?(&|#|$)');
-            if (url.search(pattern)>=0) {
-                return url.replace(pattern,'$1' + paramValue + '$2');
-            }
-            url = url.replace(/[?#]$/,'');
-            return url + (url.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue;
-        }
+      replaceUrlParam(url, paramName, paramValue) {
+        console.log('LangSelector')
+        const newUrl = new URL(url)
+        const hash = newUrl.hash
+        newUrl.hash = ''
+        newUrl.searchParams.set(paramName, paramValue)
+        newUrl.hash = hash
+        return newUrl.href
+      }
 
     }
 }
